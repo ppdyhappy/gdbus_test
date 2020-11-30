@@ -7,7 +7,7 @@ int main()
 {
 	MinMinBusGDBUS *proxy;
 	GError *error;
-	gchar **buf;
+	gchar *buf;
 
 	error = NULL;
 	proxy = min_min_bus_gdbus_proxy_new_for_bus_sync(G_BUS_TYPE_SESSION, G_DBUS_PROXY_FLAGS_NONE,
@@ -21,8 +21,8 @@ int main()
 		return 1;
 	}
 
-	min_min_bus_gdbus_call_hello_world_sync(proxy, "fatminmin", buf, NULL, &error);
-	g_print("resp: %s\n", *buf);
+	min_min_bus_gdbus_call_hello_world_sync(proxy, "fatminmin", &buf, NULL, &error);
+	g_print("resp: %s\n", buf);
 
 	g_object_unref(proxy);
 	return 0;
